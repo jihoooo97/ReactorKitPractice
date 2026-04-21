@@ -258,3 +258,9 @@ Tuist/.build
 
 
 **/GoogleService-Info.plist
+
+# SSH Keys
+match_launcher_key
+match_launcher_key.pub
+*.p8
+*.json
