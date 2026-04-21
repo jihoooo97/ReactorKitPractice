@@ -25,6 +25,11 @@ jobs:
         with:
           ssh-private-key: ${{ secrets.MATCH_GIT_PRIVATE_KEY }}
     
+    - name: Install Apple WWDR Certificate
+      run: |
+        curl -fL https://developer.apple.com/certificationauthority/AppleWWDRCAG3.cer -o AppleWWDRCAG3.cer
+        security import AppleWWDRCAG3.cer -k ~/Library/Keychains/login.keychain-db -T /usr/bin/codesign
+    
       - name: Install mise
         uses: jdx/mise-action@v2
         
