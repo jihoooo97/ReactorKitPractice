@@ -32,6 +32,7 @@ jobs:
         run: |
           mise exec tuist -- tuist clean
           mise exec tuist -- tuist install
+          mise exec tuist -- tuist generate --no-open
     
       # GitHub Secrets에 저장된 환경변수들을 세팅
       - name: Run Fastlane
