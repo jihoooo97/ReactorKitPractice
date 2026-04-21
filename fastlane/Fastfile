@@ -17,11 +17,13 @@ default_platform(:ios)
 
 platform :ios do
   lane :beta do
-    setup_ci if is_ci
+    setup_ci(force: true) if is_ci
 
     match(
       type: "appstore",
       app_identifier: "com.MatchTest.Release",
+      keychain_name: "fastlane_tmp_keychain",
+      keychain_password: ""
       readonly: true
     )
 
