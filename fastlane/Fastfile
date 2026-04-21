@@ -47,7 +47,6 @@ platform :ios do
 
     upload_to_testflight(
       api_key: api_key,
-      username: ENV["APPLE_ID"],
       app_identifier: "com.MatchTest.Release",
       skip_waiting_for_build_processing: true,
       uses_non_exempt_encryption: false
