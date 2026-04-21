@@ -28,7 +28,7 @@ jobs:
       - name: Install mise
         uses: jdx/mise-action@v2
         
-      - name: Tuist Install & Generate
+      - name: Tuist Install
         run: |
           mise exec tuist -- tuist clean
           mise exec tuist -- tuist install
