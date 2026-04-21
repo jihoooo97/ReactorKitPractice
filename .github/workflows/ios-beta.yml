@@ -25,6 +25,11 @@ jobs:
         with:
           ssh-private-key: ${{ secrets.MATCH_GIT_PRIVATE_KEY }}
     
+      - name: Set up Xcode version
+        uses: maxim-lobanov/setup-xcode@v1
+        with:
+          xcode-version: '26.0'
+    
       - name: Install mise
         uses: jdx/mise-action@v2
         
