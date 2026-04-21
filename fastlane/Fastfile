@@ -23,7 +23,7 @@ platform :ios do
       type: "appstore",
       app_identifier: "com.MatchTest.Release",
       keychain_name: "fastlane_tmp_keychain",
-      keychain_password: ""
+      keychain_password: "",
       readonly: true
     )
 
