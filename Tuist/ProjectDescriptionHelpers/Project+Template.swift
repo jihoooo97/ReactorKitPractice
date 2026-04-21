@@ -32,7 +32,7 @@ public extension Target {
             resources:  hasResource ? [.glob(pattern: "Resources/**", excluding: [])] : [],
             dependencies: dependencies,
             settings: .settings(
-                base: type == .app ? baseSetting.setCodeSignManual() : baseSetting,
+                base: type == .app ? baseSetting.setCodeSignManual().setProvisioning() : baseSetting,
                 configurations: type == .app
                 ? Configuration.appConfiguration
                 : Configuration.moduleConfiguration
@@ -90,6 +90,7 @@ fileprivate extension Configuration {
         .release(
             name: "Release",
             settings: [
+                "CODE_SIGN_IDENTITY": "Apple Distribution",
                 "PRODUCT_BUNDLE_IDENTIFIER": SettingValue(stringLiteral: Environment.bundlePrefix + "Release"),
                 "PROVISIONING_PROFILE_SPECIFIER": SettingValue(stringLiteral: "match AppStore " + Environment.bundlePrefix + "Release")
             ]
@@ -97,6 +98,7 @@ fileprivate extension Configuration {
         .release(
             name: "Beta",
             settings: [
+                "CODE_SIGN_IDENTITY": "Apple Distribution",
                 "PRODUCT_BUNDLE_IDENTIFIER": SettingValue(stringLiteral: Environment.bundlePrefix + "Release"),
                 "PROVISIONING_PROFILE_SPECIFIER": SettingValue(stringLiteral: "match AppStore " + Environment.bundlePrefix + "Release")
             ]
@@ -104,6 +106,7 @@ fileprivate extension Configuration {
         .debug(
             name: "Debug",
             settings: [
+                "CODE_SIGN_IDENTITY": "Apple Development",
                 "PRODUCT_BUNDLE_IDENTIFIER": SettingValue(stringLiteral: Environment.bundlePrefix + "Debug"),
                 "PROVISIONING_PROFILE_SPECIFIER": SettingValue(stringLiteral: "match Development " + Environment.bundlePrefix + "Debug"),
             ]
