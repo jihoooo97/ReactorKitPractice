@@ -264,3 +264,5 @@ match_launcher_key
 match_launcher_key.pub
 *.p8
 *.json
+
+Configurations/
