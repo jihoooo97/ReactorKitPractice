@@ -31,7 +31,10 @@ jobs:
           cd temp_vault
           git sparse-checkout set configs/MatchTest
           git checkout
+          mkdir -p ../Configurations
           cp -R configs/MatchTest/* ../Configurations
+          cd ..
+          rm -rf temp_vault
     
       - name: Set up Xcode version
         uses: maxim-lobanov/setup-xcode@v1
