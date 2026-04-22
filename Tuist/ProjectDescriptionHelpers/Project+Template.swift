@@ -104,15 +104,15 @@ public extension Configuration {
     static let moduleConfiguration: [Configuration] = [
         .release(
             name: "Release",
-            xcconfig: .relativeToRoot("Configurations/Release.xcconfig")
+            xcconfig: .relativeToRoot("Configurations/Shared.xcconfig")
         ),
         .release(
             name: "Beta",
-            xcconfig: .relativeToRoot("Configurations/Beta.xcconfig")
+            xcconfig: .relativeToRoot("Configurations/Shared.xcconfig")
         ),
         .debug(
             name: "Debug",
-            xcconfig: .relativeToRoot("Configurations/Debug.xcconfig")
+            xcconfig: .relativeToRoot("Configurations/Shared.xcconfig")
         )
     ]
     
