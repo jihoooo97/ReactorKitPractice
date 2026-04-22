@@ -65,6 +65,7 @@ public extension Project {
         "CFBundleVersion": .string("$(CURRENT_PROJECT_VERSION)"),
         "CFBundleDisplayName": .string("$(APP_NAME)"),
         "CFBundleIdentifier": .string("$(PRODUCT_BUNDLE_IDENTIFIER)"),
+        "PROVISIONING_PROFILE_SPECIFIER": .string("$(PROVISIONING_PROFILE_SPECIFIER)"),
         "UIUserInterfaceStyle": .string("Light"),
         "UIBackgroundModes": .array([
             .string("remote-notification"),
