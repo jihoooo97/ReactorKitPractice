@@ -15,11 +15,8 @@ let project = Project(
     organizationName: Environment.workspaceName,
     options: .options(automaticSchemesOptions: .disabled),
     settings: .settings(
-        configurations: [
-            .debug(name: "Debug"),
-            .release(name: "Beta"),
-            .release(name: "Release")
-        ]
+        base: .baseSettings.setCodeSignManual().setProvisioning(),
+        configurations: Configuration.appConfiguration
     ),
     targets: [
         .createTarget(

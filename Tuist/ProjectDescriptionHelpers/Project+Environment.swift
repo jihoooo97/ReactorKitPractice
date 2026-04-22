@@ -63,7 +63,8 @@ public extension SettingsDictionary {
 public extension Project {
     static let defaultInfoPlist: [String: Plist.Value] = [
         "CFBundleVersion": .string("$(CURRENT_PROJECT_VERSION)"),
-        "CFBundleDisplayName": .string("MatchTest"),
+        "CFBundleDisplayName": .string("$(APP_NAME)"),
+        "CFBundleIdentifier": .string("$(PRODUCT_BUNDLE_IDENTIFIER)"),
         "UIUserInterfaceStyle": .string("Light"),
         "UIBackgroundModes": .array([
             .string("remote-notification"),

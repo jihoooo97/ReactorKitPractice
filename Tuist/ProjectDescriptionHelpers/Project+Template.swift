@@ -25,7 +25,7 @@ public extension Target {
             name: name,
             destinations: [.iPhone],
             product: productType,
-            bundleId: Environment.bundlePrefix + name,
+            bundleId: type == .app ? "$(PRODUCT_BUNDLE_IDENTIFIER)" : Environment.bundlePrefix + name,
             deploymentTargets: Environment.deploymentTarget,
             infoPlist: infoPlist,
             sources: [type == .unitTest ? "Tests/**/*.swift" : "Sources/**/*.swift"],
@@ -35,7 +35,7 @@ public extension Target {
                 base: type == .app ? baseSetting.setCodeSignManual().setProvisioning() : baseSetting,
                 configurations: type == .app
                 ? Configuration.appConfiguration
-                : Configuration.moduleConfiguration
+                : Configuration.moduleConfiguration,
             )
         )
     }
@@ -84,39 +84,36 @@ public extension Scheme {
     
 }
 
-fileprivate extension Configuration {
+public extension Configuration {
     
     static let appConfiguration: [Configuration] = [
         .release(
             name: "Release",
-            settings: [
-                "CODE_SIGN_IDENTITY": "Apple Distribution",
-                "PRODUCT_BUNDLE_IDENTIFIER": SettingValue(stringLiteral: Environment.bundlePrefix + "Release"),
-                "PROVISIONING_PROFILE_SPECIFIER": SettingValue(stringLiteral: "match AppStore " + Environment.bundlePrefix + "Release")
-            ]
+            xcconfig: .relativeToRoot("Configurations/Release.xcconfig")
         ),
         .release(
             name: "Beta",
-            settings: [
-                "CODE_SIGN_IDENTITY": "Apple Distribution",
-                "PRODUCT_BUNDLE_IDENTIFIER": SettingValue(stringLiteral: Environment.bundlePrefix + "Release"),
-                "PROVISIONING_PROFILE_SPECIFIER": SettingValue(stringLiteral: "match AppStore " + Environment.bundlePrefix + "Release")
-            ]
+            xcconfig: .relativeToRoot("Configurations/Beta.xcconfig")
         ),
         .debug(
             name: "Debug",
-            settings: [
-                "CODE_SIGN_IDENTITY": "Apple Development",
-                "PRODUCT_BUNDLE_IDENTIFIER": SettingValue(stringLiteral: Environment.bundlePrefix + "Debug"),
-                "PROVISIONING_PROFILE_SPECIFIER": SettingValue(stringLiteral: "match Development " + Environment.bundlePrefix + "Debug"),
-            ]
+            xcconfig: .relativeToRoot("Configurations/Debug.xcconfig")
         )
     ]
     
     static let moduleConfiguration: [Configuration] = [
-        .debug(name: "Debug"),
-        .release(name: "Beta"),
-        .release(name: "Release")
+        .release(
+            name: "Release",
+            xcconfig: .relativeToRoot("Configurations/Release.xcconfig")
+        ),
+        .release(
+            name: "Beta",
+            xcconfig: .relativeToRoot("Configurations/Beta.xcconfig")
+        ),
+        .debug(
+            name: "Debug",
+            xcconfig: .relativeToRoot("Configurations/Debug.xcconfig")
+        )
     ]
     
 }

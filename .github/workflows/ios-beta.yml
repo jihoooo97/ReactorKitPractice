@@ -24,6 +24,14 @@ jobs:
         uses: webfactory/ssh-agent@v0.9.0
         with:
           ssh-private-key: ${{ secrets.MATCH_GIT_PRIVATE_KEY }}
+          
+      - name: Sparse Checkout Secrets
+        run: |
+          git clone --filter=blob:none --no-checkout git@github.com:jihoooo97/match-secrets.git temp_vault
+          cd temp_vault
+          git sparse-checkout set configs/MatchTest
+          git checkout
+          cp -R configs/MatchTest/* ../Configurations
     
       - name: Set up Xcode version
         uses: maxim-lobanov/setup-xcode@v1
@@ -35,7 +43,6 @@ jobs:
         
       - name: Tuist Install
         run: |
-          mise exec tuist -- tuist clean
           mise exec tuist -- tuist install
           mise exec tuist -- tuist generate --no-open
     

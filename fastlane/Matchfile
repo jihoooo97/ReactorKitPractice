@@ -1,4 +1,4 @@
-git_url("git@github.com:jihoooo97/CookTTak_CI.git")
+git_url("git@github.com:jihoooo97/match-secrets.git")
 storage_mode("git")
 
 type("appstore") 

@@ -16,11 +16,7 @@ let project = Project(
     options: .options(automaticSchemesOptions: .disabled),
     settings: .settings(
         base: .baseSettings,
-        configurations: [
-            .debug(name: "Debug"),
-            .release(name: "Beta"),
-            .release(name: "Release")
-        ]
+        configurations: Configuration.moduleConfiguration
     ),
     targets: [
         .createTarget(
